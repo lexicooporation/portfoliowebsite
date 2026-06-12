@@ -1,0 +1,71 @@
+# ── Environment & Secrets ─────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+
+# ── Virtual Environments ──────────────────────────────────────
+venv/
+env/
+.venv/
+.env/
+ENV/
+
+# ── Django ────────────────────────────────────────────────────
+*.log
+*.pot
+*.pyc
+db.sqlite3
+db.sqlite3-journal
+staticfiles/
+media/
+
+# ── Cloudinary (local cache) ──────────────────────────────────
+.cloudinary/
+
+# ── IDE & Editors ─────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ── OS ────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# ── Testing & Coverage ────────────────────────────────────────
+.coverage
+htmlcov/
+.pytest_cache/
+coverage.xml
+*.cover
+
+# ── Build & Distribution ─────────────────────────────────────
+dist/
+build/
+*.egg-info/
+*.egg
+.eggs/
+
+# ── Node (if any frontend tooling) ───────────────────────────
+node_modules/
+npm-debug.log*
+
+# ── Misc ──────────────────────────────────────────────────────
+*.bak
+*.tmp
+*.orig
