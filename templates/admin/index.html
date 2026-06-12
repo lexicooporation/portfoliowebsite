@@ -1,0 +1,242 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/admin_custom.css' %}">
+<div class="lx-page">
+
+  <!-- Page Header -->
+  <div class="lx-page-header">
+    <div class="lx-page-header-left">
+      <h1>Dashboard</h1>
+      <p>Overview of your portfolio activity</p>
+    </div>
+    <div class="lx-header-date">
+      <i class="fas fa-calendar-alt" style="margin-right:5px; color:#94a3b8;"></i>
+      {% now "N j, Y" %}
+    </div>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="lx-stat-grid">
+
+    <a href="/admin/portfolioApp/project/" class="lx-stat-card">
+      <div class="lx-stat-top">
+        <div class="lx-stat-label">Projects</div>
+        <div class="lx-stat-icon lx-icon-indigo"><i class="fas fa-code"></i></div>
+      </div>
+      <div class="lx-stat-number">{{ total_projects }}</div>
+      <div class="lx-stat-sub">{{ featured_projects }} featured</div>
+    </a>
+
+    <a href="/admin/portfolioApp/contactmessage/?is_read__exact=0" class="lx-stat-card">
+      <div class="lx-stat-top">
+        <div class="lx-stat-label">Unread</div>
+        <div class="lx-stat-icon lx-icon-blue"><i class="fas fa-envelope"></i></div>
+      </div>
+      <div class="lx-stat-number">{{ unread_messages }}</div>
+      <div class="lx-stat-sub">{{ total_messages }} total messages</div>
+    </a>
+
+    <a href="/admin/portfolioApp/skill/" class="lx-stat-card">
+      <div class="lx-stat-top">
+        <div class="lx-stat-label">Skills</div>
+        <div class="lx-stat-icon lx-icon-teal"><i class="fas fa-layer-group"></i></div>
+      </div>
+      <div class="lx-stat-number">{{ total_skills }}</div>
+      <div class="lx-stat-sub">Across all categories</div>
+    </a>
+
+    <a href="/admin/portfolioApp/project/?featured__exact=1" class="lx-stat-card">
+      <div class="lx-stat-top">
+        <div class="lx-stat-label">Featured</div>
+        <div class="lx-stat-icon lx-icon-amber"><i class="fas fa-star"></i></div>
+      </div>
+      <div class="lx-stat-number">{{ featured_projects }}</div>
+      <div class="lx-stat-sub">Pinned on portfolio</div>
+    </a>
+
+  </div>
+
+  <!-- Main Grid -->
+  <div class="lx-main-grid">
+
+    <!-- Left: Recent Messages -->
+    <div>
+      <div class="lx-section-label">Recent Messages</div>
+      <div class="lx-card">
+        <div class="lx-card-header">
+          <div class="lx-card-title">
+            <i class="fas fa-inbox"></i> Inbox
+          </div>
+          <a href="/admin/portfolioApp/contactmessage/" class="lx-card-action">
+            View all <i class="fas fa-arrow-right" style="font-size:10px;"></i>
+          </a>
+        </div>
+
+        {% if recent_messages %}
+          {% for msg in recent_messages %}
+          <div class="lx-msg-item">
+            {% if not msg.is_read %}<div class="lx-dot"></div>{% endif %}
+            <div class="lx-avatar">{{ msg.name|first|upper }}</div>
+            <div class="lx-msg-body">
+              <div class="lx-msg-name">
+                {{ msg.name }}
+                {% if not msg.is_read %}<span class="lx-badge lx-badge-new">New</span>{% endif %}
+              </div>
+              <div class="lx-msg-subject">{{ msg.subject }}</div>
+              <div class="lx-msg-preview">{{ msg.message|truncatechars:80 }}</div>
+            </div>
+            <div class="lx-msg-time">{{ msg.created_at|timesince }} ago</div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="lx-empty">
+            <i class="fas fa-inbox"></i>
+            <div class="lx-empty-title">No messages yet</div>
+            <div>New enquiries will appear here</div>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Recent Projects -->
+      <div class="lx-section-label" style="margin-top: 20px;">Recent Projects</div>
+      <div class="lx-card">
+        <div class="lx-card-header">
+          <div class="lx-card-title">
+            <i class="fas fa-folder-open"></i> Projects
+          </div>
+          <a href="/admin/portfolioApp/project/" class="lx-card-action">
+            View all <i class="fas fa-arrow-right" style="font-size:10px;"></i>
+          </a>
+        </div>
+
+        {% if recent_projects %}
+          {% for project in recent_projects %}
+          <div class="lx-project-item">
+            <div class="lx-project-icon">
+              {% if project.category == 'ml' %}
+                <i class="fas fa-brain"></i>
+              {% elif project.category == 'data' %}
+                <i class="fas fa-chart-bar"></i>
+              {% elif project.category == 'cv' %}
+                <i class="fas fa-eye"></i>
+              {% else %}
+                <i class="fas fa-globe"></i>
+              {% endif %}
+            </div>
+            <div class="lx-project-body">
+              <div class="lx-project-title">
+                {{ project.title }}
+                {% if project.featured %}
+                  <span class="lx-badge lx-badge-featured">Featured</span>
+                {% endif %}
+              </div>
+              <div class="lx-project-meta">
+                <span class="lx-tag lx-tag-{{ project.category }}">{{ project.get_category_display }}</span>
+                <span class="lx-project-stack">{{ project.tech_stack|truncatechars:40 }}</span>
+              </div>
+            </div>
+            <a href="/admin/portfolioApp/project/{{ project.pk }}/change/" class="lx-project-edit" title="Edit">
+              <i class="fas fa-pencil-alt"></i>
+            </a>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="lx-empty">
+            <i class="fas fa-folder-open"></i>
+            <div class="lx-empty-title">No projects yet</div>
+            <div>Add your first project to get started</div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div>
+      <div class="lx-right-cols">
+
+        <!-- Quick Actions -->
+        <div>
+          <div class="lx-section-label">Quick Actions</div>
+          <div class="lx-card">
+            <a href="/admin/portfolioApp/project/add/" class="lx-action-item">
+              <div class="lx-action-icon lx-action-icon-indigo"><i class="fas fa-plus"></i></div>
+              <span class="lx-action-label">Add Project</span>
+              <span class="lx-action-arrow"><i class="fas fa-chevron-right"></i></span>
+            </a>
+            <a href="/admin/portfolioApp/skill/add/" class="lx-action-item">
+              <div class="lx-action-icon lx-action-icon-teal"><i class="fas fa-layer-group"></i></div>
+              <span class="lx-action-label">Add Skill</span>
+              <span class="lx-action-arrow"><i class="fas fa-chevron-right"></i></span>
+            </a>
+            <a href="/admin/portfolioApp/contactmessage/?is_read__exact=0" class="lx-action-item">
+              <div class="lx-action-icon lx-action-icon-blue"><i class="fas fa-envelope"></i></div>
+              <span class="lx-action-label">
+                Unread Messages
+                {% if unread_messages > 0 %}
+                  <span class="lx-badge lx-badge-new" style="margin-left:4px;">{{ unread_messages }}</span>
+                {% endif %}
+              </span>
+              <span class="lx-action-arrow"><i class="fas fa-chevron-right"></i></span>
+            </a>
+            <a href="/admin/portfolioApp/project/?featured__exact=1" class="lx-action-item">
+              <div class="lx-action-icon lx-action-icon-amber"><i class="fas fa-star"></i></div>
+              <span class="lx-action-label">Featured Projects</span>
+              <span class="lx-action-arrow"><i class="fas fa-chevron-right"></i></span>
+            </a>
+            <a href="/" target="_blank" class="lx-action-item">
+              <div class="lx-action-icon lx-action-icon-gray"><i class="fas fa-external-link-alt"></i></div>
+              <span class="lx-action-label">View Live Site</span>
+              <span class="lx-action-arrow"><i class="fas fa-chevron-right"></i></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Top Skills -->
+        <div>
+          <div class="lx-section-label">Top Skills</div>
+          <div class="lx-card">
+            <div class="lx-card-header">
+              <div class="lx-card-title">
+                <i class="fas fa-layer-group"></i> By Proficiency
+              </div>
+              <a href="/admin/portfolioApp/skill/" class="lx-card-action">
+                All <i class="fas fa-arrow-right" style="font-size:10px;"></i>
+              </a>
+            </div>
+
+            {% if top_skills %}
+              {% for skill in top_skills %}
+              <div class="lx-skill-item">
+                <div class="lx-skill-header">
+                  <div class="lx-skill-name">
+                    {% if skill.icon_class %}
+                      <i class="{{ skill.icon_class }}" style="font-size:13px; color:#6366f1; margin-right:6px;"></i>
+                    {% endif %}
+                    {{ skill.name }}
+                    <span class="lx-tag lx-tag-{{ skill.category }}">{{ skill.get_category_display }}</span>
+                  </div>
+                  <div class="lx-skill-pct">{{ skill.proficiency }}%</div>
+                </div>
+                <div class="lx-skill-bar-track">
+                  <div class="lx-skill-bar-fill" style="width: {{ skill.proficiency }}%;"></div>
+                </div>
+              </div>
+              {% endfor %}
+            {% else %}
+              <div class="lx-empty">
+                <i class="fas fa-layer-group"></i>
+                <div class="lx-empty-title">No skills yet</div>
+                <div>Add skills to display them here</div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+      </div><!-- /lx-right-cols -->
+    </div><!-- /right column -->
+
+  </div><!-- /lx-main-grid -->
+</div><!-- /lx-page -->
+{% endblock %}

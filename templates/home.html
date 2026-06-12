@@ -1,0 +1,598 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Lexitechsolutions — Python Developer & ML Engineer{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-geo"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="container hero-content py-5">
+    <div class="row align-items-center g-5 min-vh-100 py-5">
+
+      <!-- Left: Text -->
+      <div class="col-lg-6">
+        <div class="hero-badge mb-4">
+          <span class="dot"></span>
+          Available for work
+        </div>
+
+        <p class="hero-title-role">Python Developer · ML Engineer</p>
+        <h1 class="display-name">
+          Hi, I'm<br/>
+          <span>Lexi tech</span>
+        </h1>
+
+        <p class="hero-bio mt-3">
+          I build intelligent web applications and machine-learning pipelines —
+          from production-ready Django backends to computer-vision models that
+          run in the real world.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#contact" class="btn-primary-red">
+            <i class="fas fa-paper-plane"></i> Let's Talk
+          </a>
+          <a href="#projects" class="btn-outline-red">
+            <i class="fas fa-folder-open"></i> View Projects
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">4+</div>
+            <div class="hero-stat-label">Years Exp.</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">20+</div>
+            <div class="hero-stat-label">Projects</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">12+</div>
+            <div class="hero-stat-label">ML Models</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">97%</div>
+            <div class="hero-stat-label">Accuracy (best model)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Code Window -->
+      <div class="col-lg-6 d-none d-lg-block">
+        <div class="hero-visual position-relative mx-auto" style="max-width:480px;">
+
+          <div class="skill-pill skill-pill-1">
+            <i class="devicon-tensorflow-original colored"></i> TensorFlow
+          </div>
+          <div class="skill-pill skill-pill-2">
+            <i class="devicon-django-plain" style="color:#092E20"></i> Django
+          </div>
+          <div class="skill-pill skill-pill-3">
+            <i class="devicon-pandas-original colored"></i> Pandas
+          </div>
+
+          <div class="code-window">
+            <div class="code-window-bar">
+              <span class="code-dot red"></span>
+              <span class="code-dot yellow"></span>
+              <span class="code-dot green"></span>
+              <span class="code-filename">classifier.py</span>
+            </div>
+            <div class="code-body">
+                <span class="code-line"><span class="code-keyword">import</span> <span class="code-class-name">tensorflow</span> <span class="code-keyword">as</span> tf</span>
+                <span class="code-line"><span class="code-keyword">from</span> <span class="code-class-name">tensorflow.keras</span> <span class="code-keyword">import</span> layers</span>
+                <span class="code-line">&nbsp;</span>
+                <span class="code-line"><span class="code-comment"># Load pre-trained MobileNetV2</span></span>
+                <span class="code-line"><span class="code-var">base_model</span> = tf.keras.applications.<span class="code-func">MobileNetV2</span>(</span>
+                <span class="code-line">  <span class="code-var">input_shape</span>=(<span class="code-num">224</span>, <span class="code-num">224</span>, <span class="code-num">3</span>),</span>
+                <span class="code-line">  <span class="code-var">include_top</span>=<span class="code-keyword">False</span>,</span>
+                <span class="code-line">  <span class="code-var">weights</span>=<span class="code-string">'imagenet'</span></span>
+                <span class="code-line">)</span>
+                <span class="code-line"><span class="code-var">base_model</span>.trainable = <span class="code-keyword">False</span></span>
+                <span class="code-line">&nbsp;</span>
+                <span class="code-line"><span class="code-comment"># Build classification head</span></span>
+                <span class="code-line"><span class="code-var">model</span> = tf.keras.<span class="code-class-name">Sequential</span>([</span>
+                <span class="code-line">  <span class="code-var">base_model</span>,</span>
+                <span class="code-line">  layers.<span class="code-func">GlobalAveragePooling2D</span>(),</span>
+                <span class="code-line">  layers.<span class="code-func">Dropout</span>(<span class="code-num">0.3</span>),</span>
+                <span class="code-line">  layers.<span class="code-func">Dense</span>(<span class="code-num">38</span>, <span class="code-var">activation</span>=<span class="code-string">'softmax'</span>)</span>
+                <span class="code-line">])</span>
+                <span class="code-line">&nbsp;</span>
+                <span class="code-line"><span class="code-comment"># → val_accuracy: 0.9734 ✓</span></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════════════ -->
+<section id="about" class="section-pad bg-off-white">
+  <div class="container">
+    <div class="row align-items-center g-5">
+
+      <div class="col-lg-5 reveal">
+        <div class="about-img-wrap">
+
+          <!-- Inner anchor -->
+          <div class="about-img-anchor">
+            <!-- Animated blob — image fills and morphs with it -->
+            <div class="about-img">
+              <img src="{% static 'img/image1.png' %}" alt="Lexitechsolutions" />
+            </div>
+            <!-- Floating badge -->
+            <div class="experience-badge">
+              <div class="num">4+</div>
+              <div style="font-size:.75rem;color:var(--gray-600);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;">Years Exp.</div>
+            </div>
+          </div><!-- /.about-img-anchor -->
+
+        </div>
+      </div>
+
+      <div class="col-lg-7 reveal reveal-delay-2">
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">Python & ML Engineer<br/> with a Product Mindset</h2>
+
+        <p style="color:var(--gray-600);line-height:1.85;margin-bottom:1.25rem;">
+          I'm a software developer who works in both <strong>web engineering</strong> and <strong>data science</strong>. 
+          I have four years of practical experience. I've delivered Django applications that serve thousands of users every day. 
+          I've also trained computer-vision models that reach production-level accuracy.
+        </p>
+        <p style="color:var(--gray-600);line-height:1.85;margin-bottom:2rem;">
+          My approach covers everything: from data analysis and model training, to REST API design and a polished front end. 
+          I believe that good machine learning engineering goes hand in hand with good software engineering.
+        </p>
+
+        <div class="d-flex flex-wrap gap-2 mb-3">
+          <span class="about-tag"><i class="fas fa-check-circle" style="color:var(--red-main)"></i> Django / DRF</span>
+          <span class="about-tag"><i class="fas fa-check-circle" style="color:var(--red-main)"></i> TensorFlow / Keras</span>
+          <span class="about-tag"><i class="fas fa-check-circle" style="color:var(--red-main)"></i> Computer Vision</span>
+          <span class="about-tag"><i class="fas fa-check-circle" style="color:var(--red-main)"></i> Data Analysis</span>
+          <span class="about-tag"><i class="fas fa-check-circle" style="color:var(--red-main)"></i> REST APIs</span>
+          <span class="about-tag"><i class="fas fa-check-circle" style="color:var(--red-main)"></i> Docker / CI-CD</span>
+        </div>
+
+        <div class="d-flex gap-3 mt-4">
+          <a href="#contact" class="btn-primary-red">
+            <i class="fas fa-envelope"></i> Hire Me
+          </a>
+          <a href="{% static 'cv/lexi_cv.pdf' %}" download="Lexitechsolutions_CV.pdf" class="btn-outline-dark">
+            <i class="fas fa-download"></i> Download CV
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SKILLS
+════════════════════════════════════════════════════ -->
+<section id="skills" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <p class="section-label">What I Know</p>
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-subtitle">A full-stack ML engineering toolkit — from pixel to prediction.</p>
+    </div>
+
+    {% regroup skills_data by get_category_display as category_groups %}
+    <div class="row g-4">
+      {% for group in category_groups %}
+      <div class="col-md-6 reveal reveal-delay-{{ forloop.counter }}">
+        <div style="background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius-md);padding:1.8rem;height:100%;">
+          <p class="skills-category-title">{{ group.grouper }}</p>
+          {% for skill in group.list %}
+          <div class="skill-bar-item">
+            <div class="skill-bar-label">
+              {% if skill.icon_class %}<i class="{{ skill.icon_class }} colored" style="font-size:1.1rem;margin-right:.4rem;"></i>{% endif %}
+              {{ skill.name }}
+              <span>{{ skill.proficiency }}%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-pct="{{ skill.proficiency }}"></div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- ── "Also work with" badges ─── -->
+    <div class="text-center mt-5 reveal">
+      <p style="font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);margin-bottom:1.5rem;">
+        Also work with
+      </p>
+      <div>
+        {% for badge in also_know %}
+        <span class="skill-badge">
+          <i class="fas fa-circle" style="font-size:.4rem;color:var(--red-mid)"></i>
+          {{ badge }}
+        </span>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECTS
+════════════════════════════════════════════════════ -->
+<section id="projects" class="section-pad bg-off-white">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <p class="section-label">What I've Built</p>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">
+        From full-stack Django apps to computer-vision pipelines — each project is end-to-end.
+      </p>
+    </div>
+
+    <div class="row g-4">
+      {% for project in projects %}
+      <div class="col-md-6  reveal reveal-delay-{{ forloop.counter }}">
+        <div class="project-card">
+
+          {% if project.image %}
+          <div class="project-card-img">
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" />
+          </div>
+          {% endif %}
+
+          <div class="project-card-header">
+            <div class="project-icon-wrap">
+              {% if project.category == 'web' %}
+                <i class="fas fa-globe"></i>
+              {% elif project.category == 'ml' %}
+                <i class="fas fa-chart-line"></i>
+              {% elif project.category == 'cv' %}
+                <i class="fas fa-brain"></i>
+              {% elif project.category == 'data' %}
+                <i class="fas fa-database"></i>
+              {% else %}
+                <i class="fas fa-code"></i>
+              {% endif %}
+            </div>
+            <span class="project-category-badge">
+              {{ project.get_category_display }}
+            </span>
+          </div>
+
+          <div class="project-card-body">
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-desc">{{ project.short_description }}</p>
+            <div class="project-tech-wrap">
+              {% for tag in project.get_tech_list %}
+              <span class="tech-tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="project-card-footer">
+            {% if project.github_url %}
+            <a href="{{project.github_url}}" class="btn-outline-dark" target="_blank">
+              <i class="fab fa-github"></i> Code
+            </a>
+            {% endif %}
+            {% if project.live_url %}
+            <a href="{{project.live_url}}" class="btn-primary-red" target="_blank"
+               style="font-size:.85rem;padding:.5rem 1.2rem;">
+              <i class="fas fa-external-link-alt"></i> Live
+            </a>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-5 reveal">
+      <a href="https://github.com/lexicooporation" target="_blank" class="btn-outline-dark">
+        <i class="fab fa-github"></i> View All on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SERVICES
+════════════════════════════════════════════════════ -->
+<section id="services" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <p class="section-label" style="color:var(--red-mid);">What I Offer</p>
+      <h2 class="section-title" style="color:var(--white);">Services</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,.65);margin-bottom:0;">
+        End-to-end solutions — from intelligent data pipelines to polished,
+        production-ready web applications.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Data Analysis -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
+        <div class="service-card">
+          <div class="service-icon-wrap">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <h4 class="service-title">Data Analysis</h4>
+          <p class="service-desc">
+            Exploratory data analysis, statistical modelling, and interactive dashboards
+            that turn raw data into clear, actionable insights.
+          </p>
+          <div class="service-stack-wrap">
+            <span class="service-stack-chip"><i class="devicon-pandas-original colored"></i> Pandas</span>
+            <span class="service-stack-chip"><i class="devicon-numpy-original colored"></i> NumPy</span>
+            <span class="service-stack-chip"><i class="fas fa-chart-area" style="color:#3f4f75"></i> Plotly</span>
+            <span class="service-stack-chip"><i class="fas fa-wave-square" style="color:#e67e22"></i> Seaborn</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regression & ML Models -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
+        <div class="service-card">
+          <div class="service-icon-wrap">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h4 class="service-title">Regression & ML Models</h4>
+          <p class="service-desc">
+            Custom predictive models — regression, classification, clustering, and
+            gradient-boosting pipelines with full SHAP explainability reports.
+          </p>
+          <div class="service-stack-wrap">
+            <span class="service-stack-chip"><i class="devicon-tensorflow-original colored"></i> TensorFlow</span>
+            <span class="service-stack-chip"><i class="fas fa-infinity" style="color:#f08030"></i> Scikit-learn</span>
+            <span class="service-stack-chip"><i class="fas fa-bolt" style="color:#f5b942"></i> XGBoost</span>
+            <span class="service-stack-chip"><i class="fas fa-project-diagram" style="color:#7d3c98"></i> SHAP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- E-Commerce Sites -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-3">
+        <div class="service-card">
+          <div class="service-icon-wrap">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <h4 class="service-title">E-Commerce Sites</h4>
+          <p class="service-desc">
+            Full-featured online stores with secure payments, product management,
+            order tracking, and admin dashboards — built to scale.
+          </p>
+          <div class="service-stack-wrap">
+            <span class="service-stack-chip"><i class="devicon-django-plain" style="color:#092E20"></i> Django</span>
+            <span class="service-stack-chip"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+            <span class="service-stack-chip"><i class="fas fa-credit-card" style="color:#6772e5"></i> Stripe</span>
+            <span class="service-stack-chip"><i class="devicon-bootstrap-plain colored"></i> Bootstrap 5</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Sites -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
+        <div class="service-card">
+          <div class="service-icon-wrap">
+            <i class="fas fa-id-card"></i>
+          </div>
+          <h4 class="service-title">Portfolio Sites</h4>
+          <p class="service-desc">
+            Sleek, performant personal portfolios that showcase your work,
+            skills, and brand — responsive across every device.
+          </p>
+          <div class="service-stack-wrap">
+            <span class="service-stack-chip"><i class="devicon-html5-plain colored"></i> HTML5</span>
+            <span class="service-stack-chip"><i class="devicon-css3-plain colored"></i> CSS3</span>
+            <span class="service-stack-chip"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+            <span class="service-stack-chip"><i class="devicon-django-plain" style="color:#092E20"></i> Django</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Business Websites -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
+        <div class="service-card">
+          <div class="service-icon-wrap">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <h4 class="service-title">Business Websites</h4>
+          <p class="service-desc">
+            Professional multi-page business sites with contact forms, CMS integration,
+            SEO optimisation, and smooth user experiences.
+          </p>
+          <div class="service-stack-wrap">
+            <span class="service-stack-chip"><i class="devicon-django-plain" style="color:#092E20"></i> Django</span>
+            <span class="service-stack-chip"><i class="devicon-bootstrap-plain colored"></i> Bootstrap 5</span>
+            <span class="service-stack-chip"><i class="fas fa-search" style="color:#4285F4"></i> SEO</span>
+            <span class="service-stack-chip"><i class="fas fa-plug" style="color:#e74c3c"></i> REST APIs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- IT Services & Support -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-3">
+        <div class="service-card">
+          <div class="service-icon-wrap">
+            <i class="fas fa-server"></i>
+          </div>
+          <h4 class="service-title">IT Services & Support</h4>
+          <p class="service-desc">
+            Deployment, cloud hosting, CI/CD pipelines, database management,
+            and ongoing technical support to keep your systems running smoothly.
+          </p>
+          <div class="service-stack-wrap">
+            <span class="service-stack-chip"><i class="devicon-docker-plain colored"></i> Docker</span>
+            <span class="service-stack-chip"><i class="fab fa-github" style="color:#fff"></i> GitHub CI</span>
+            <span class="service-stack-chip"><i class="fas fa-cloud" style="color:#FF9900"></i> Render / AWS</span>
+            <span class="service-stack-chip"><i class="devicon-nginx-original colored"></i> Nginx</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA banner -->
+    <div class="services-cta reveal">
+      <div class="services-cta-inner">
+        <div>
+          <h4 class="services-cta-title">Have a project in mind?</h4>
+          <p class="services-cta-sub">Let's discuss how I can help bring your idea to life.</p>
+        </div>
+        <a href="#contact" class="btn-primary-red">
+          <i class="fas fa-paper-plane"></i> Get a Free Quote
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════════════ -->
+<section id="contact" class="section-pad bg-off-white">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Let's Build Something Together</h2>
+      <p class="section-subtitle">
+        Open to full-time roles, freelance projects, and ML consulting.
+        Drop a message and I'll respond within 24 hours.
+      </p>
+    </div>
+
+    <div class="row g-4 align-items-stretch">
+
+      <!-- Info -->
+      <div class="col-lg-4 reveal">
+        <div class="contact-info-card">
+          <h4 style="font-family:var(--font-display);font-weight:800;margin-bottom:.5rem;">Contact Info</h4>
+          <p style="color:rgba(255,255,255,.65);font-size:.9rem;margin-bottom:2rem;">
+            Prefer a quick chat? Reach me directly via email or LinkedIn.
+          </p>
+
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="contact-icon-btn"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;">Email</div>
+              <a href="mailto:lexicorporation22@gmail.com" style="color:var(--white);text-decoration:none;font-weight:600;font-size:.9rem;">lexicorporation22@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <a href="https://github.com/lexicooporation" target="_blank" class="contact-icon-btn">
+              <i class="fab fa-github"></i>
+            </a>
+            <div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;">GitHub</div>
+              <a href="https://github.com/lexicooporation" target="_blank" style="color:var(--white);text-decoration:none;font-weight:600;font-size:.9rem;">github.com/lexicooporation</a>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <a href="https://linkedin.com/in/nwankwo-ifeanyi-5014a8227" target="_blank" class="contact-icon-btn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;">LinkedIn</div>
+              <a href="https://linkedin.com/in/nwankwo-ifeanyi-5014a8227" target="_blank" style="color:var(--white);text-decoration:none;font-weight:600;font-size:.9rem;">linkedin.com/in/nwankwo-ifeanyi-5014a8227</a>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center gap-3">
+            <div class="contact-icon-btn"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;">Whatsapp</div>
+              <span style="color:var(--white);font-weight:600;font-size:.9rem;">+2348137089345</span>
+            </div>
+          </div>
+
+          <div style="margin-top:2.5rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);padding:1.2rem;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:.4rem;">
+              <span style="width:10px;height:10px;border-radius:50%;background:#4ade80;display:inline-block;"></span>
+              <span style="font-weight:700;color:var(--white);font-size:.9rem;">Available for hire</span>
+            </div>
+            <p style="color:rgba(255,255,255,.55);font-size:.82rem;margin:0;">
+              Currently accepting new projects for Q2 2026.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="col-lg-8 reveal reveal-delay-2">
+        <div class="contact-form-card">
+          <h4 style="font-family:var(--font-display);font-weight:800;margin-bottom:.4rem;">Send a Message</h4>
+          <p style="color:var(--gray-600);font-size:.9rem;margin-bottom:2rem;">
+            Tell me about your project — I read every message personally.
+          </p>
+
+          <form method="POST" action="{% url 'contact' %}">
+            {% include 'partials/messages.html' %}
+            {% csrf_token %}
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">{{ form.name.label }} *</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                  <div class="text-danger" style="font-size:.82rem;margin-top:.3rem;">{{ form.name.errors.0 }}</div>
+                {% endif %}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">{{ form.email.label }} *</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                  <div class="text-danger" style="font-size:.82rem;margin-top:.3rem;">{{ form.email.errors.0 }}</div>
+                {% endif %}
+              </div>
+              <div class="col-12">
+                <label class="form-label">{{ form.subject.label }} *</label>
+                {{ form.subject }}
+                {% if form.subject.errors %}
+                  <div class="text-danger" style="font-size:.82rem;margin-top:.3rem;">{{ form.subject.errors.0 }}</div>
+                {% endif %}
+              </div>
+              <div class="col-12">
+                <label class="form-label">{{ form.message.label }} *</label>
+                {{ form.message }}
+                {% if form.message.errors %}
+                  <div class="text-danger" style="font-size:.82rem;margin-top:.3rem;">{{ form.message.errors.0 }}</div>
+                {% endif %}
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn-primary-red"
+                        style="border:none;cursor:pointer;width:100%;justify-content:center;">
+                  <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
+
+
+{% block extra_js %}{% endblock extra_js %}

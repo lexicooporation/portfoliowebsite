@@ -1,0 +1,531 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Service Unavailable — Lexitechsolutions</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    /* ── CSS Variables (mirrored from styles.css) ───────────────── */
+    :root {
+      --red-dark:    #8B0000;
+      --red-main:    #B22222;
+      --red-mid:     #CD5C5C;
+      --red-light:   #DC143C;
+      --red-pale:    #fdf2f2;
+
+      --white:       #FFFFFF;
+      --off-white:   #F5F5F5;
+      --gray-400:    #ADB5BD;
+      --gray-600:    #6C757D;
+      --gray-800:    #333333;
+      --black:       #111111;
+
+      --radius-sm:   8px;
+      --radius-md:   12px;
+      --radius-lg:   20px;
+
+      --shadow-md:   0 8px 24px rgba(139,0,0,.12);
+      --shadow-lg:   0 16px 48px rgba(139,0,0,.16);
+      --transition:  all .3s cubic-bezier(.4,0,.2,1);
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: var(--font-body);
+     
+    }
+
+    ::selection { background: var(--red-main); color: var(--white); }
+
+    /* ── Full-screen hero background (matches #hero in styles.css) ─ */
+    .maintenance-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--red-dark);
+      padding: 2rem;
+    }
+
+    /* Gradient mesh */
+    .bg-layer {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(178,34,34,.35) 0%, transparent 70%),
+        linear-gradient(135deg, #1a0000 0%, #8B0000 40%, #B22222 100%);
+      z-index: 0;
+    }
+
+    /* Grid lines */
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 100%);
+    }
+
+    /* Decorative circles */
+    .bg-circle-1 {
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 520px; height: 520px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.025);
+      z-index: 0;
+    }
+    .bg-circle-2 {
+      position: absolute;
+      bottom: -120px; left: -80px;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.03);
+      z-index: 0;
+    }
+
+    /* Orbiting ring animation */
+    .bg-ring {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(205,92,92,.1);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      animation: slowSpin 40s linear infinite;
+    }
+    .bg-ring-2 {
+      width: 480px; height: 480px;
+      border-color: rgba(205,92,92,.07);
+      animation-duration: 28s;
+      animation-direction: reverse;
+    }
+
+    @keyframes slowSpin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* ── Content card ───────────────────────────────────────────── */
+    .maintenance-card {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 580px;
+      width: 100%;
+      animation: fadeUp .8s cubic-bezier(.4,0,.2,1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Brand ──────────────────────────────────────────────────── */
+    .brand {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 3rem;
+      opacity: .9;
+    }
+    .brand span { color: var(--red-mid); }
+
+    /* ── Status badge ───────────────────────────────────────────── */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(205,92,92,.15);
+      border: 1px solid rgba(205,92,92,.3);
+      border-radius: 100px;
+      padding: .35rem 1rem;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      font-weight: 500;
+      color: var(--red-mid);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+
+    .status-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--red-mid);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .45; transform: scale(.75); }
+    }
+
+    /* ── Error code ─────────────────────────────────────────────── */
+    .error-code {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 18vw, 9rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: .25rem;
+      /* subtle outline treatment */
+      -webkit-text-stroke: 2px rgba(255,255,255,.15);
+    }
+
+    .error-code .accent { color: var(--red-mid); -webkit-text-stroke: 0; }
+
+    /* ── Heading & body ─────────────────────────────────────────── */
+    .maint-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .maint-body {
+      color: rgba(255,255,255,.55);
+      font-size: .97rem;
+      line-height: 1.8;
+      max-width: 440px;
+      margin: 0 auto 2.25rem;
+    }
+
+    /* ── Terminal block ─────────────────────────────────────────── */
+    .terminal {
+      background: rgba(0,0,0,.45);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-md);
+      padding: 1.1rem 1.4rem;
+      text-align: left;
+      margin: 0 auto 2.5rem;
+      max-width: 420px;
+      backdrop-filter: blur(10px);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: .85rem;
+    }
+
+    .terminal-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .t-red   { background: #FF5F57; }
+    .t-amber { background: #FEBC2E; }
+    .t-green { background: #28C840; }
+
+    .terminal-line {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,.5);
+    }
+
+    .terminal-line .prompt { color: var(--red-mid); }
+    .terminal-line .cmd    { color: rgba(255,255,255,.8); }
+    .terminal-line .ok     { color: #28C840; }
+    .terminal-line .warn   { color: #FEBC2E; }
+    .terminal-line .err    { color: #FF5F57; }
+
+    /* Blinking cursor */
+    .cursor {
+      display: inline-block;
+      width: 7px; height: .85em;
+      background: var(--red-mid);
+      vertical-align: middle;
+      margin-left: 2px;
+      animation: blink .9s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* ── Actions ────────────────────────────────────────────────── */
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .btn-red {
+      background: var(--red-main);
+      color: var(--white);
+      border: 2px solid var(--red-main);
+      border-radius: var(--radius-md);
+      padding: .7rem 1.75rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: .92rem;
+      letter-spacing: .01em;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .btn-red:hover {
+      background: var(--red-dark);
+      border-color: var(--red-dark);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255,255,255,.75);
+      border: 2px solid rgba(255,255,255,.25);
+      border-radius: var(--radius-md);
+      padding: .7rem 1.75rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: .92rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(255,255,255,.5);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ── Social strip ───────────────────────────────────────────── */
+    .social-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+    }
+
+    .social-strip a {
+      width: 36px; height: 36px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.5);
+      font-size: .85rem;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-strip a:hover {
+      background: var(--red-main);
+      border-color: var(--red-main);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ── Footer note ────────────────────────────────────────────── */
+    .footer-note {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: .78rem;
+      color: rgba(255,255,255,.2);
+      z-index: 2;
+    }
+
+    /* ── Countdown ──────────────────────────────────────────────── */
+    .countdown-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .cd-block {
+      text-align: center;
+    }
+
+    .cd-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .cd-label {
+      font-family: var(--font-mono);
+      font-size: .62rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      margin-top: .2rem;
+    }
+
+    .cd-sep {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--red-mid);
+      line-height: 1;
+      padding-bottom: 1rem;
+      animation: blink 1.2s step-end infinite;
+    }
+
+    /* ── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 576px) {
+      .error-code { font-size: clamp(5rem, 22vw, 7rem); }
+      .bg-ring { width: 420px; height: 420px; }
+      .bg-ring-2 { width: 280px; height: 280px; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="maintenance-page">
+
+  <!-- Backgrounds -->
+  <div class="bg-layer"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-circle-1"></div>
+  <div class="bg-circle-2"></div>
+  <div class="bg-ring"></div>
+  <div class="bg-ring bg-ring-2"></div>
+
+  <!-- Main content -->
+  <div class="maintenance-card">
+
+    <!-- Brand -->
+    <a href="/" class="brand">LEXI<span>.</span></a>
+
+    <!-- Status badge -->
+    <div>
+      <span class="status-badge">
+        <span class="status-dot"></span>
+        503 — Service Unavailable
+      </span>
+    </div>
+
+    <!-- Big error code -->
+    <div class="error-code">5<span class="accent">0</span>3</div>
+
+    <!-- Heading -->
+    <h1 class="maint-title">We're down for maintenance</h1>
+
+    <p class="maint-body">
+      The site is being upgraded with new features and improvements.
+      Everything will be back online shortly — thanks for your patience.
+    </p>
+
+    <!-- Terminal block -->
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="terminal-dot t-red"></span>
+        <span class="terminal-dot t-amber"></span>
+        <span class="terminal-dot t-green"></span>
+      </div>
+      <div class="terminal-line"><span class="prompt">$</span> <span class="cmd">python manage.py migrate --run-syncdb</span></div>
+      <div class="terminal-line"><span class="ok">✔</span> Applying new migrations… done</div>
+      <div class="terminal-line"><span class="prompt">$</span> <span class="cmd">pip install -r requirements.txt</span></div>
+      <div class="terminal-line"><span class="warn">⟳</span> Installing dependencies… in progress</div>
+      <div class="terminal-line"><span class="prompt">$</span> <span class="cmd">gunicorn lexitechsolutions.wsgi</span></div>
+      <div class="terminal-line"><span class="err">⏸</span> Server restart queued<span class="cursor"></span></div>
+    </div>
+
+    <!-- Countdown (JS-driven) -->
+    <div class="countdown-wrap" id="countdown">
+      <div class="cd-block"><div class="cd-num" id="cd-h">02</div><div class="cd-label">Hours</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-block"><div class="cd-num" id="cd-m">00</div><div class="cd-label">Mins</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-block"><div class="cd-num" id="cd-s">00</div><div class="cd-label">Secs</div></div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="btn-red" onclick="location.reload()">
+        <i class="fas fa-rotate-right"></i> Refresh page
+      </button>
+      <a href="mailto:lexicorporation22@gmail.com" class="btn-ghost">
+        <i class="fas fa-envelope"></i> Contact us
+      </a>
+    </div>
+
+    <!-- Social -->
+    <div class="social-strip">
+      <a href="https://github.com/lexicooporation" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/nwankwo-ifeanyi-5014a8227" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://x.com/lexyystore02" target="_blank" title="Twitter / X"><i class="fab fa-twitter"></i></a>
+      <a href="mailto:lexicorporation22@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+
+  </div><!-- /.maintenance-card -->
+
+  <p class="footer-note">© 2026 lexitechsolutions · Scheduled maintenance window</p>
+</div>
+
+<script>
+  /* ── Countdown: 2 hours from page load ─── */
+  const end = Date.now() + 2 * 60 * 60 * 1000;
+
+  function tick() {
+    const diff = Math.max(0, end - Date.now());
+    const h = Math.floor(diff / 3_600_000);
+    const m = Math.floor((diff % 3_600_000) / 60_000);
+    const s = Math.floor((diff % 60_000) / 1_000);
+
+    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+
+    if (diff > 0) requestAnimationFrame(tick);
+  }
+
+  tick();
+</script>
+</body>
+</html>
