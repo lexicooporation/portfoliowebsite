@@ -1,0 +1,28 @@
+# .gitattributes
+# Normalise line endings for cross-platform consistency
+
+* text=auto
+
+# Shell scripts MUST have LF on all platforms (Linux/Render needs this)
+*.sh text eol=lf
+
+# Python files
+*.py text eol=lf
+
+# HTML / CSS / JS
+*.html text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
+
+# Config files
+*.txt  text eol=lf
+*.md   text eol=lf
+Procfile text eol=lf
+
+# Binary files — never touch line endings
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary

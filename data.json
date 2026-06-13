@@ -1,0 +1,78 @@
+{
+  "SKILLS_DATA": {
+    "Languages": [
+      {"name": "Python", "pct": 95, "icon": "devicon-python-plain"},
+      {"name": "SQL", "pct": 85, "icon": "devicon-postgresql-plain"},
+      {"name": "JavaScript", "pct": 70, "icon": "devicon-javascript-plain"},
+      {"name": "Bash / Shell", "pct": 65, "icon": "devicon-bash-plain"}
+    ],
+    "Frameworks & Web": [
+      {"name": "Django", "pct": 92, "icon": "devicon-django-plain"},
+      {"name": "Bootstrap 5", "pct": 88, "icon": "devicon-bootstrap-plain"},
+      {"name": "Django REST", "pct": 82, "icon": "devicon-django-plain"},
+      {"name": "FastAPI", "pct": 72, "icon": "devicon-fastapi-plain"}
+    ],
+    "ML / Data Science": [
+      {"name": "TensorFlow", "pct": 88, "icon": "devicon-tensorflow-original"},
+      {"name": "Scikit-learn", "pct": 90, "icon": "devicon-python-plain"},
+      {"name": "Pandas", "pct": 93, "icon": "devicon-pandas-original"},
+      {"name": "NumPy", "pct": 91, "icon": "devicon-numpy-original"}
+    ],
+    "Tools & DevOps": [
+      {"name": "Git / GitHub", "pct": 90, "icon": "devicon-github-original"},
+      {"name": "Docker", "pct": 75, "icon": "devicon-docker-plain"},
+      {"name": "PostgreSQL", "pct": 82, "icon": "devicon-postgresql-plain"},
+      {"name": "Linux", "pct": 80, "icon": "devicon-linux-plain"}
+    ]
+  },
+  "PLACEHOLDER_PROJECTS": [
+    {
+      "id": 1,
+      "title": "AgriSense Platform",
+      "category": "web",
+      "category_label": "Web Development",
+      "short_description": "A full-stack Django web app for precision agriculture — real-time crop monitoring, weather integration, and data dashboards.",
+      "tech_list": ["Django", "PostgreSQL", "Bootstrap 5", "Chart.js", "REST API"],
+      "github_url": "#",
+      "live_url": "#",
+      "icon": "fa-globe",
+      "color": "#B22222"
+    },
+    {
+      "id": 2,
+      "title": "PlantDisease CNN Classifier",
+      "category": "cv",
+      "category_label": "Computer Vision",
+      "short_description": "Image classification model using transfer learning (MobileNetV2) to detect 38 plant disease classes with 97%+ validation accuracy.",
+      "tech_list": ["TensorFlow", "Keras", "MobileNetV2", "NumPy", "OpenCV"],
+      "github_url": "#",
+      "live_url": "#",
+      "icon": "fa-brain",
+      "color": "#8B0000"
+    },
+    {
+      "id": 3,
+      "title": "Customer Churn Predictor",
+      "category": "ml",
+      "category_label": "Machine Learning",
+      "short_description": "End-to-end ML pipeline predicting telecom customer churn using gradient boosting and SHAP explainability visualizations.",
+      "tech_list": ["Scikit-learn", "Pandas", "XGBoost", "SHAP", "Matplotlib"],
+      "github_url": "#",
+      "live_url": "#",
+      "icon": "fa-chart-line",
+      "color": "#A52A2A"
+    },
+    {
+      "id": 4,
+      "title": "Sales Trend Analyser",
+      "category": "data",
+      "category_label": "Data Analysis",
+      "short_description": "Interactive EDA and forecasting dashboard built with Pandas, Plotly Dash, and Prophet for multi-store retail sales data.",
+      "tech_list": ["Pandas", "NumPy", "Prophet", "Plotly Dash", "Seaborn"],
+      "github_url": "#",
+      "live_url": "#",
+      "icon": "fa-database",
+      "color": "#CD5C5C"
+    }
+  ]
+}
