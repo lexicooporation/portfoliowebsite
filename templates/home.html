@@ -251,7 +251,7 @@
 
           {% if project.image %}
           <div class="project-card-img">
-            <img src="{{ project.image.url }}" alt="{{ project.title }}" />
+            <img src="{{ project.image.url|default:'' }}" alt="{{ project.title }}" onerror="this.closest('.project-card-img').style.display='none'" />
           </div>
           {% endif %}
 

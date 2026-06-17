@@ -18,7 +18,6 @@ DEBUG = os.getenv('DEBUG','False')=='True'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -147,16 +146,17 @@ MAINTENANCE_MODE_TEMPLATE = '503.html'
 
 
 
+# fallback if Redis isn't available at startup
 CACHES = {
     "default": {
-        "BACKEND":  "django_redis.cache.RedisCache",
+        "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": os.getenv("REDIS_URL", "redis://127.0.0.1:6379/2"),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "IGNORE_EXCEPTIONS": True,  # silently falls back instead of raising
         },
     }
 }
-
 
 default_theme_mode='light'
 

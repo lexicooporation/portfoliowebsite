@@ -7,7 +7,7 @@ from .forms import ContactForm
 # Create your views here.
 def home(request):
     skills = Skill.objects.all().order_by('category', 'order')
-    projects = Project.objects.all().order_by('order', '-created_at')
+    projects = Project.objects.filter(featured=True).order_by('order', '-created_at')
     context = {
         'skills_data': skills,
         'projects': projects,
@@ -30,22 +30,18 @@ def _get_client_ip(request):
 
 
 def _is_rate_limited(ip):
-    """
-    Returns True if the IP has exceeded RATE_LIMIT submissions
-    within RATE_WINDOW seconds. Uses Django cache as counter store.
-    """
     cache_key = f"contact_rate_{ip}"
-    count = cache.get(cache_key, 0)
-
-    if count >= RATE_LIMIT:
-        return True
-
-    if count == 0:
-        cache.set(cache_key, 1, timeout=RATE_WINDOW)
-    else:
-        cache.incr(cache_key)
-
-    return False
+    try:
+        count = cache.get(cache_key, 0)
+        if count >= RATE_LIMIT:
+            return True
+        if count == 0:
+            cache.set(cache_key, 1, timeout=RATE_WINDOW)
+        else:
+            cache.incr(cache_key)
+        return False
+    except Exception:
+        return False  # Redis down — let the request through
 
 
 def contact(request):
